@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+
+        <title>React Fundamentals</title>
+
+        <!-- Links to the React Library Served up over a CDN (Content Delivery Network) -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+        <!-- 
+            For us to utlilize JSX in our code, it must be transpiled. Babel takes our code using the JSX syntax and transforms it into a backwards 
+            compatible version of JavaScript that the browser can understand and run.
+         -->
+         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+         <style>
+             /* We can style with an internal stylesheet, just like we did on previous applications
+             
+             The rule set below is eliminating some browser feault styling.
+              */
+              * {
+                  margin: 0;
+                  padding: 0;
+                  border: 0;
+                  outline: 0;
+                  font-size: 100%;
+                  vertical-align: baseline;
+                  background: transparent;
+              }
+
+              #container header{
+                  background-color: lightgray;
+                  padding: 25px 5px;
+                  text-align: center;
+                  border-bottom: solid black 10px;
+              }
+
+              header h1{
+                  font-family: monospace;
+                  font-size: 32px;
+              }
+
+              header h2{
+                  font-family: sans-serif;
+                  font-size: 18px;
+                  font-style: italic;
+                  margin-top: 5px;
+              }
+
+         </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <!-- This is called a "root" DOM node because everything inside of it will be managed by the React DOM. React apps usually only have one
+        "root" DOM node. All of the content we want to be displayed to the user will be injected into this spot on this HTML page. Remember this is a 
+    Single Page App, so only 1 HTML page will ever be loaded. -->
+
+    <script type="text/babel">
+        //The type attribute above indicates that the code in this script tag will need to converted (transpiled) from JSX into plan JS using
+        //Babel. The transpilation process MUST happen because when we are writing HTML inside of JS, we are 
+        //utilizing features of the language that have not yet been widley implmented in browsers (our traget
+        //enviroment).
+
+        //Create a variable taht hold DOM mode 
+        var destination = document.getElementById('root');
+
+        //We will create elements to be remembered inside of the <div id="root">
+        //Elements are what is returned from Components, which are the essential building block of a React app.
+        //Elements describe what we see on the screen and they are cheap (performance wise) to create.
+        var h1Element = <h1>Hello, world!</h1>;
+        var h2Element = <h2>Using React </h2>;
+        var pElement = <p>I am learning React, YAY!</p>
+        
+        var headingElement = <header>{h1Element}{h2Element}</header>;
+        var mainElement = <main>{pElement}</main>; 
+
+        ReactDOM.render(
+            //ReactDOM.render() is the method that allows content to be printed out of the screen. It 
+            //takes in two parameters: 1)what are you trying to render 2) where to render it to 
+            <div id="container">
+                {headingElement}
+                {/*The curly braces above caused the code inside to be treated as an expression*/}
+                {mainElement}
+            </div>,
+            destination
+        );
+
+    </script>
+    </body>
+</html>

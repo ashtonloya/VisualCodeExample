@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>React Fundamentals</title>
+
+    <!-- Links to the React Library served up over a CDN (Content Delivery Network) -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: transparent;
+        }
+
+        #container header {
+            background-color: lightgray;
+            padding: 25px 5px;
+            text-align: center;
+            border-bottom: solid black 10px;
+        }
+
+        header h1 {
+            font-family: monospace;
+            font-size: 32px;
+        }
+
+        header h2 {
+            font-family: sans-serif;
+            font-size: 18px;
+            font-style: italic;
+            margin-top: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        var destination = document.getElementById('root');
+
+        var h1Element = <h1>Hello, world!</h1>;
+        var h2Element = <h2>Using React </h2>;
+        
+        var headingElement = <header>{h1Element}{h2Element}</header>
+
+        class Heading extends React.Component {
+            render() {
+                return (
+                    <header>
+                        {/*This is an element */}
+                        <h1>Hello, world!</h1>
+                        <h2>Using React</h2>
+                    </header>
+                );
+            }
+        }
+
+        class Main extends React.Component {
+            render() {
+                return (
+                    <main>
+                        <p>I am learning React, Yay!</p>
+                        {/*<PersonInfo /> */}
+                    </main>
+                );
+            }
+        }
+
+        //Components can have children of many types
+        //Let's create the top level comonent for this app
+        class App extends React.Componenet{
+            render() {
+                return (
+                <div id="container">
+                    <Heading />
+                    <Main />
+                 </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+                <App/>,
+            destination
+        );
+
+    </script>
+</body>
+
+</html>
